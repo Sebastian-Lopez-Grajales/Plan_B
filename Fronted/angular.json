@@ -26,7 +26,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/scripts/general-functions.js",
+              "src/assets/scripts/bootstrap-init.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Fronted"
+    }
+  },
+  "defaultProject": "Fronted",
+  "cli": {
+    "analytics": false
+  }
 }
