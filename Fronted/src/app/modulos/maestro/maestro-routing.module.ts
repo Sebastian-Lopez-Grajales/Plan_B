@@ -7,10 +7,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  {
-    path: 'home',
-    redirectTo: '/home'
-  },
+
   {
     path: '',
     pathMatch: 'full',
@@ -24,6 +21,11 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then(a => a.AdminModule),
+  },
+
+  {
+    path: 'inicio',
+    loadChildren: () => import('../inicio/inicio.module').then(i => i.InicioModule)
   },
 
   {

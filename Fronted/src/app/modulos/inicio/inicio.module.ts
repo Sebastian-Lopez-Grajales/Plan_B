@@ -6,10 +6,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FooterComponent } from './footer/footer.component';
+import { OlvidarComponent } from './olvidar/olvidar.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, LoginComponent, RegistrarComponent, FooterComponent],
+  declarations: [NavbarComponent, LoginComponent, RegistrarComponent, FooterComponent, OlvidarComponent],
   imports: [
     CommonModule,
     InicioRoutingModule
