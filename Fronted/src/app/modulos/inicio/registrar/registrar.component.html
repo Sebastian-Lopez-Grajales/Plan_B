@@ -1,36 +1,155 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<body>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+<div class="container register">
+    <form [formGroup]="fgValidator"> 
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>BIENVENIDO</h3>
+                        <p>La clave se genera automaticamente y la podras encontrar en el correo electronico que proporciones. </p>
+                        <input type="submit" name="" value="Login" routerLink="/inicio/login"/><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Formulario de Registro.</h3>
+                                    <div class="row register-form">
+                                            <div class="col-md-6">
+                                                
+                                                    <div class="form-group ">
+                                                        <input formControlName="p_nombre" type="text" class="form-control" placeholder="Primer Nombre *"  />
+                                                    </div>
+                                                    <div class="warning-validator" *ngIf="fgv.p_nombre.errors && (fgv.p_nombre.dirty || fgv.p_nombre.touched)">
+                                                        <strong *ngIf="fgv.p_nombre.errors.required">
+                                                            Campo Obligatorio!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.p_nombre.errors.minlength">
+                                                            Minimo 2 letras!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.p_nombre.errors.maxlength">
+                                                            Maximo 33 letras!
+                                                        </strong>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input formControlName="s_nombre" type="text" class="form-control" placeholder="Segundo Nombre"  />
+                                                    </div>
+                                                    <div class="warning-validator" *ngIf="fgv.s_nombre.errors && (fgv.s_nombre.dirty || fgv.s_nombre.touched)">
+                                                       
+                                                        <strong *ngIf="fgv.s_nombre.errors.minlength">
+                                                            Minimo 2 letras!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.s_nombre.errors.maxlength">
+                                                            Maximo 33 letras!
+                                                        </strong>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input formControlName="p_apellido" type="text" class="form-control" placeholder="Primer Apellido *"  />
+                                                    </div>
+                                                    <div class="warning-validator" *ngIf="fgv.p_apellido.errors && (fgv.p_apellido.dirty || fgv.p_apellido.touched)">
+                                                        <strong *ngIf="fgv.p_apellido.errors.required">
+                                                            Campo Obligatorio!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.p_apellido.errors.minlength">
+                                                            Minimo 2 letras!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.p_apellido.errors.maxlength">
+                                                            Maximo 3 letras!
+                                                        </strong>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input formControlName="s_apellido" type="text" class="form-control" placeholder="Segundo Apellido "  />
+                                                    </div>
+                                                    <div class="warning-validator" *ngIf="fgv.s_apellido.errors && (fgv.s_apellido.dirty || fgv.s_apellido.touched)">
+                                                       
+                                                        <strong *ngIf="fgv.s_apellido.errors.minlength">
+                                                            Minimo 2 letras!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.s_apellido.errors.maxlength">
+                                                            Maximo 33 letras!
+                                                        </strong>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input formControlName="n_usuario" type="text" class="form-control" placeholder="Nombre de Usuario *"  />
+                                                    </div>
+                                                    <div class="warning-validator" *ngIf="fgv.n_usuario.errors && (fgv.n_usuario.dirty || fgv.n_usuario.touched)">
+                                                        <strong *ngIf="fgv.n_usuario.errors.required">
+                                                            Campo Obligatorio!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.n_usuario.errors.minlength">
+                                                            Minimo 6 letras!
+                                                        </strong>
+                                                        <strong *ngIf="fgv.n_usuario.errors.maxlength">
+                                                            Maximo 18 letras!
+                                                        </strong>
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input formControlName="genero" type="text" class="form-control" placeholder="Genero *"  />
+                                                </div>
+                                                <div class="warning-validator" *ngIf="fgv.genero.errors && (fgv.genero.dirty || fgv.genero.touched)">
+                                                    <strong *ngIf="fgv.genero.errors.required">
+                                                        Campo Obligatorio!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.genero.errors.minlength">
+                                                        Minimo 2 letras!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.genero.errors.maxlength">
+                                                        Maximo 13 letras!
+                                                    </strong>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input formControlName="ciudad" type="text" class="form-control" placeholder="Ciudad *"  />
+                                                </div>
+                                                <div class="warning-validator" *ngIf="fgv.ciudad.errors && (fgv.ciudad.dirty || fgv.ciudad.touched)">
+                                                    <strong *ngIf="fgv.ciudad.errors.required">
+                                                        Campo Obligatorio!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.ciudad.errors.minlength">
+                                                        Minimo 2 letras!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.ciudad.errors.maxlength">
+                                                        Maximo 33 letras!
+                                                    </strong>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input formControlName="celular" type="text" class="form-control" placeholder="Celular *"  />
+                                                </div>
+                                                <div class="warning-validator" *ngIf="fgv.celular.errors && (fgv.celular.dirty || fgv.celular.touched)">
+                                                    <strong *ngIf="fgv.celular.errors.required">
+                                                        Campo Obligatorio!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.celular.errors.minlength">
+                                                        Minimo 10 numeros!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.celular.errors.maxlength">
+                                                        Maximo 10 numeros!
+                                                    </strong>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input formControlName="correo" type="email" class="form-control" placeholder="Correo Electronico *" />
+                                                </div>
+                                                <div class="warning-validator" *ngIf="fgv.correo.errors && (fgv.correo.dirty || fgv.correo.touched)">
+                                                    <strong *ngIf="fgv.correo.errors.required">
+                                                        Campo Obligatorio!
+                                                    </strong>
+                                                    <strong *ngIf="fgv.correo.errors.email">
+                                                        Formato de correo invalido!
+                                                    </strong>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="birthday">Nacimiento:</label>
+                                                    <input formControlName="nacimiento" type="date"  > 
+                                                </div>
+                                                <input type="submit" class="btnRegister" (click)="UsuarioModelRegister()"  value="Register"/>
+                                                
+                                            </div>
+                                      
+                                    </div>
+                                
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
-                            <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
-                            </div>
-                        </form>
+                        </div>
+                    
                     </div>
                 </div>
-            </div>
-        </div>
+            </form>
     </div>
-</body>

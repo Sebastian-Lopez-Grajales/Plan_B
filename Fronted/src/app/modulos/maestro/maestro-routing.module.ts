@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component'
-
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
   },
-
+  {
+    path: 'inicio',
+    loadChildren: () => import('../inicio/inicio.module').then(i => i.InicioModule),
+  },
   {
     path: '',
     pathMatch: 'full',
@@ -24,8 +26,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'inicio',
-    loadChildren: () => import('../inicio/inicio.module').then(i => i.InicioModule)
+    path: 'usuario',
+    loadChildren: () => import('../usuario/usuario.module').then(u => u.UsuarioModule)
   },
 
   {

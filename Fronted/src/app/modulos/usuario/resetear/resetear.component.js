@@ -1,4 +1,4 @@
-  $(document).ready(function(){
+$(document).ready(function(){
     $('.pass_show').append('<span class="ptxt">Show</span>');  
     });
       

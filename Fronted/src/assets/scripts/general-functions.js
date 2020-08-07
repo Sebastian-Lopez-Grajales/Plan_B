@@ -11,4 +11,3 @@ function closeModal(modalId){
     $('#' + modalId).modal('hide');
 }
 
-//alert(`Hola 3`);

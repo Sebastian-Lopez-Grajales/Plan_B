@@ -7,13 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FooterComponent } from './footer/footer.component';
 import { OlvidarComponent } from './olvidar/olvidar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [NavbarComponent, LoginComponent, RegistrarComponent, FooterComponent, OlvidarComponent],
   imports: [
     CommonModule,
-    InicioRoutingModule
+    InicioRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class InicioModule { }
