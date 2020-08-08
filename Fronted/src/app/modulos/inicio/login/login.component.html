@@ -1,30 +1,49 @@
 <div class="container register">
-    <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-            <h3>BIENVENIDO</h3>
-            <p>Recuerde que su contraseña se encuentra en el correo electronico que ingreso en el registro. </p>
-            <input type="submit" name="" value="Login" routerLink="/inicio/login"/><br/>
-        </div>
-        <div class="col-md-9 register-right">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Formulario de Ingreso.</h3>
-                    <div class="row register-form">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Usuario *" value="" />
+    <form [formGroup]="fgValidator"> 
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>BIENVENIDO</h3>
+                <p>Recuerde que su contraseña se encuentra en el correo electronico que ingreso en el registro. </p>
+                <input type="submit" name="" value="Registrarse" routerLink="/inicio/registrar"/><br/>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Formulario de Ingreso.</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input formControlName="nombre_usuario" type="text" class="form-control" placeholder="Nombre de Usuario *"  />
+                                </div>
+                                <div class="warning-validator" *ngIf="fgv.nombre_usuario.errors && (fgv.nombre_usuario.dirty || fgv.nombre_usuario.touched)">
+                                    <strong *ngIf="fgv.nombre_usuario.errors.required">
+                                        Campo Obligatorio!
+                                    </strong>
+                                    <strong *ngIf="fgv.nombre_usuario.errors.minlength">
+                                        Minimo {{document_min_length}} numeros!
+                                    </strong>
+                                    <strong *ngIf="fgv.nombre_usuario.errors.maxlength">
+                                        Maximo {{document_max_length}} numeros!
+                                    </strong>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Contraseña *" value="" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input formControlName="clave" type="text" class="form-control" placeholder="Clave *"  />
+                                </div>
+                                <div class="warning-validator" *ngIf="fgv.clave.errors && (fgv.clave.dirty || fgv.clave.touched)">
+                                    <strong *ngIf="fgv.clave.errors.required">
+                                        Campo Obligatorio!
+                                    </strong>
+                                </div>
+                                <input type="submit" class="btnRegister"  (click)="LoginUser()" value="Ingresar"/>
+                                
                             </div>
-                            <input type="submit" class="btnRegister"  value="Ingresar"/>
-                            
                         </div>
                     </div>
-                </div>
+            </div>
         </div>
     </div>
+     </form>
 </div>

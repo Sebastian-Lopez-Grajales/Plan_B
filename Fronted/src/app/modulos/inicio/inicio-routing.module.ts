@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'registrar',
     component: RegistrarComponent
   },
+  {
+    path: 'maestro',
+    loadChildren: () => import('../maestro/maestro.module').then(m  => m.MaestroModule)
+  },
 
 ];
 

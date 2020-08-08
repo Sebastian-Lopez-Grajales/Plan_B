@@ -63,13 +63,12 @@ export class InicioService {
       console.log("Already exist")
       return false;
     } else {
-      sessionData.isLogged = true;
       let data: UsuarioModel = {
-        id_usuario: sessionData.data.id,
-        nombre_usuario: sessionData.data.username,
-        /*token: sessionData.token,
+        id_usuario: sessionData.data.id_usuario,
+        nombre_usuario: sessionData.data.nombre_usuario,
+        token: sessionData.token,
         isLogged: true,
-        rol: sessionData.data.role*/
+        rol: sessionData.data.rol
       };
       localStorage.setItem('session', JSON.stringify(data));
       this.setUserData(data);
