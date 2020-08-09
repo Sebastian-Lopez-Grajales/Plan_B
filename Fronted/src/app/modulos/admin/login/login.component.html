@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="container register">
+    <form [formGroup]="fgValidator"> 
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>BIENVENIDO</h3>
+                <p>Recuerde que su usuario y contraseña se encuentran en su correo electronico. </p>
+                <input type="submit" name="" value="Registrarse" routerLink="/inicio/registrar"/><br/>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Formulario de Ingreso Administrador.</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input formControlName="correo" type="text" class="form-control" placeholder="Nombre de Usuario *"  />
+                                </div>
+                                <div class="warning-validator" *ngIf="fgv.correo.errors && (fgv.correo.dirty || fgv.correo.touched)">
+                                    <strong *ngIf="fgv.correo.errors.required">
+                                        Campo Obligatorio!
+                                    </strong>
+                                    <strong *ngIf="fgv.correo.errors.email">
+                                        Correo incorrecto!
+                                    </strong>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input formControlName="clave" type="password" class="form-control" placeholder="Clave *"  />
+                                </div>
+                                <div class="warning-validator" *ngIf="fgv.clave.errors && (fgv.clave.dirty || fgv.clave.touched)">
+                                    <strong *ngIf="fgv.clave.errors.required">
+                                        Campo Obligatorio!
+                                    </strong>
+                                </div>
+                                <input type="submit" class="btnRegister"  (click)="LoginUseradmin()" value="Ingresar"/>
+                                
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+     </form>
+</div>

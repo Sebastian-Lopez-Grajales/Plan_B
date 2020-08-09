@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InicioService } from 'src/app/servicios/servicios_de_inicio/inicio.service';
 import { FormsConfig } from '../../../config/forms-config';
-import { UsuarioModel } from 'src/app/modelos/usuario/usuario.model';
+import { UsuarioModel } from 'src/app/modelos/usuario.model';
 import MD5 from 'crypto-js/md5';
 
 declare const ShowNotificationMessage: any;

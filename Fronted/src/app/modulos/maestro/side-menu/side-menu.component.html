@@ -1,46 +1,32 @@
 <div id="wrapper">
-
   <!-- Sidebar -->
-  <div  id="sidebar-wrapper">
+  <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-              <a routerLink="/home">
-                  Muro
-              </a>
+          <li>
+            <a *ngIf="rol == 3" routerLink="/admin/lista-admin">Administradores </a>
           </li>
           <li>
-              <a  routerLink="/admin/login">Login Administrador</a>
+            <a *ngIf="rol >=1" routerLink="/admin/lista-parametros">Parametros </a>
           </li>
           <li>
-            <a  routerLink="/admin/lista-admin">Lista administrador </a>
+            <a  *ngIf="rol >=0" routerLink="/usuario/editar-perfil">Editar Perfil </a>
           </li>
           <li>
-            <a  routerLink="/parametros/lista-publicidad">Lista Publicidad</a>
+            <a *ngIf="rol >=0" routerLink="/usuario/lista-contactos">Contactos </a>
           </li>
           <li>
-            <a  routerLink="/parametros/lista-publicacion">Lista Publicacion</a>
+            <a  *ngIf="rol >=0" routerLink="/usuario/lista-comentarios">Comentarios </a>
           </li>
           <li>
-            <a  routerLink="/parametros/lista-denuncia">Lista Denuncias</a>
+            <a  *ngIf="rol >=0" routerLink="/usuario/lista-mensajes">Mensajes  </a>
           </li>
           <li>
-            <a  routerLink="/usuario/resetear">Resetear Clave</a>
+            <a  *ngIf="rol >=0" routerLink="/usuario/resetear">Resetear Clave </a>
           </li>
           <li>
-            <a  routerLink="/usuario/editar">Editar Perfil</a>
+            <a  *ngIf="rol >=0" >Cerrar sesion </a>
           </li>
-          <li>
-            <a  routerLink="/usuario/lista-contacto">Lista Contactos</a>
-          </li>
-          <li>
-            <a  routerLink="/usuario/lista-mensaje">Lista Mensajes</a>
-          </li>
-          <li>
-            <a  routerLink="/usuario/lista-comentario">Lista Comentarios</a>
-          </li>
-          <li>
-            <a  routerLink="/inicio/home">Cerrar sesion</a>
-          </li>
+
       </ul>
   </div>
   <!-- /#sidebar-wrapper -->

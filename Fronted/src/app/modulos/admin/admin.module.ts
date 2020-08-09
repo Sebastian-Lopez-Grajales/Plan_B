@@ -7,13 +7,18 @@ import { EditarAdminComponent } from './administrador/editar-admin/editar-admin.
 import { EliminarAdminComponent } from './administrador/eliminar-admin/eliminar-admin.component';
 import { ListaAdminComponent } from './administrador/lista-admin/lista-admin.component';
 import { LoginComponent } from './login/login.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CrearAdminComponent, EditarAdminComponent, EliminarAdminComponent, ListaAdminComponent, LoginComponent],
+  declarations: [CrearAdminComponent,
+     EditarAdminComponent,
+      EliminarAdminComponent, 
+      ListaAdminComponent, LoginComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

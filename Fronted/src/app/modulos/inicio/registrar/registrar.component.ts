@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsuarioModel } from '../../../modelos/usuario/usuario.model';
+import { UsuarioModel } from '../../../modelos/usuario.model';
 import { InicioService } from '../../../servicios/servicios_de_inicio/inicio.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -74,7 +74,8 @@ export class RegistrarComponent implements OnInit {
     model.ciudad = this.fgv.ciudad.value;
     model.celular=this.fgv.celular.value;
     model.nacimiento=this.fgv.nacimiento.value;
-    model.genero=this.fgv.genero.value
+    model.genero=this.fgv.genero.value;
+    model.rol=0
     return model;
   }
 

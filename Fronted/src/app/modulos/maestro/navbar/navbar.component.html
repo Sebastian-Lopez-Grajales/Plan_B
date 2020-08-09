@@ -1,16 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light   ">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a  routerLink="/inicio/registrar">Login</a>
-      </li>
-    </ul>
-  </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li  class="nav-item active">
+          <button onclick="toggleSideBar()" type="button" class="btn btn-outline-danger">Menu</button>
+        </li>
+        <li  class="nav-item active">
+          <button  type="button" class="btn btn-outline-danger" routerLink="/maestro/Inicio" >Inicio</button>
+        </li>
+      </ul>
+    </div>
 </nav>
   <app-side-menu>
     

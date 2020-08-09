@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject  } from 'rxjs';
 import { ServiceConfig } from '../../config/service.config';
-import { UsuarioModel} from '../../modelos/usuario.model';
+import { AdminModel} from '../../modelos/admin.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InicioService {
-  userData = new BehaviorSubject<UsuarioModel>(new UsuarioModel());
-  entity: String = 'usuarios';
+export class AdminService {
+  adminData = new BehaviorSubject<AdminModel>(new AdminModel());
+  entity: String = 'administradores';
 
   constructor(
     private http: HttpClient
@@ -21,37 +21,30 @@ export class InicioService {
     let currentSession = this.getSession();
     console.log(currentSession);
     if (currentSession) {
-      let userData = JSON.parse(currentSession);
-      this.setUserData(userData);
+      let adminData = JSON.parse(currentSession);
+      this.setadminData(adminData);
     }
   }
 
-  setUserData(value: UsuarioModel) {
-    this.userData.next(value);
+  setadminData(value: AdminModel) {
+    this.adminData.next(value);
   }
 
-  getUserData() {
-    return this.userData.asObservable();
+  getadminData() {
+    return this.adminData.asObservable();
   }
 
   /**
    * Verify credentials of an user to login
    * @param model Data to verify credentials
    */
-  LoginUser(model: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login`, model, {
+  LoginAdmin(model: AdminModel): Observable<AdminModel> {
+    return this.http.post<AdminModel>(`${ServiceConfig.BASE_URL}loginAdmin`, model, {
       headers: new HttpHeaders({
       })
     })
   }
 
-  UserRegister(model: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}${this.entity}`, model, {
-      headers: new HttpHeaders({
-
-      })
-    })
-  }
    /**
    * Save data of new session
    * @param sessionData Object with user in session data
@@ -63,15 +56,14 @@ export class InicioService {
       console.log("Already exist")
       return false;
     } else {
-      let data: UsuarioModel = {
-        id_usuario: sessionData.data.id_usuario,
-        nombre_usuario: sessionData.data.nombre_usuario,
+      let data: AdminModel = {
+        correo: sessionData.data.correo,
         token: sessionData.token,
         isLogged: true,
         rol: sessionData.data.rol
       };
       localStorage.setItem('session', JSON.stringify(data));
-      this.setUserData(data);
+      this.setadminData(data);
       return true;
     }
   }
@@ -96,7 +88,7 @@ export class InicioService {
    * Verify if the user in session has the roleId parameter
    * @param roleId role to verify
    */
-  isUserRol(roleId): Boolean {
+  isAdminRol(roleId): Boolean {
     let currentSession = this.getSession();
     console.log(currentSession);
     console.log("roleId: " + roleId);
@@ -112,7 +104,7 @@ export class InicioService {
     return JSON.parse(currentSession).token;
   }
 
-  getUserId(): String {
+  getAdminId(): String {
     let currentSession = this.getSession();
     return JSON.parse(currentSession).id;
   }
@@ -123,7 +115,7 @@ export class InicioService {
    */
   Logout() {
     localStorage.removeItem('session');
-    this.setUserData(new UsuarioModel());
+    this.setadminData(new AdminModel());
   }
 
 }

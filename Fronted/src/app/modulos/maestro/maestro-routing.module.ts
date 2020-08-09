@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component'
+import {InicioGuard} from '../../guardias/inicio/inicio.guard'
+
 const routes: Routes = [
   {
     path: 'home',
@@ -9,6 +11,7 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('../inicio/inicio.module').then(i => i.InicioModule),
+    canActivate: [InicioGuard]
   },
   {
     path: '',
