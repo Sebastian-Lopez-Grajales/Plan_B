@@ -8,11 +8,11 @@ import MD5 from 'crypto-js/md5';
 
 declare const ShowNotificationMessage: any;
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-usuario',
+  templateUrl: './login_usuario.component.html',
+  styleUrls: ['./login_usuario.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginusuarioComponent implements OnInit {
 
   fgValidator: FormGroup;
   document_min_length: number = FormsConfig.MIN_LENGTH;

@@ -1,3 +1,6 @@
+<app-navbar>
+
+</app-navbar>
 <div class="container register">
     <form [formGroup]="fgValidator"> 
         <div class="row">
@@ -8,6 +11,14 @@
                 <input type="submit" name="" value="Registrarse" routerLink="/inicio/registrar"/><br/>
             </div>
             <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link " id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="false" routerLink="/inicio/login-usuario">Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab"  role="tab" aria-controls="profile" aria-selected="true" routerLink="/inicio/login-admin">Admin</a>
+                    </li>
+                </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Formulario de Ingreso Administrador.</h3>
@@ -25,6 +36,7 @@
                                     </strong>
                                  
                                 </div>
+                                <input type="submit" class="btnRegister" routerLink="/inicio/olvidar"   value="¿Mi contraseña?"/>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -45,3 +57,6 @@
     </div>
      </form>
 </div>
+<app-footer>
+      
+</app-footer>

@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from 'src/app/servicios/servicios_de_admin/admin.service';
 import { FormsConfig } from '../../../config/forms-config';
 import { AdminModel } from 'src/app/modelos/admin.model';
 import MD5 from 'crypto-js/md5';
+import { InicioService } from 'src/app/servicios/servicios_de_inicio/inicio.service';
 
 declare const ShowNotificationMessage: any;
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-admin',
+  templateUrl: './login_admin.component.html',
+  styleUrls: ['./login_admin.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginadminComponent implements OnInit {
 
   fgValidator: FormGroup;
   document_min_length: number = FormsConfig.MIN_LENGTH;
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: AdminService,
+    private service: InicioService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       ShowNotificationMessage('Invalid Form.');
     } else {
       let model = this.getLoginData();
-      this.service.LoginAdmin(model).subscribe(
+      this.service.Loginadmin(model).subscribe(
         data => {
           ShowNotificationMessage('Welcome.');
           let res = this.service.saveSession(data);

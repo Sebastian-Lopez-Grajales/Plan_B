@@ -6,14 +6,13 @@ import { CrearAdminComponent } from './administrador/crear-admin/crear-admin.com
 import { EditarAdminComponent } from './administrador/editar-admin/editar-admin.component';
 import { EliminarAdminComponent } from './administrador/eliminar-admin/eliminar-admin.component';
 import { ListaAdminComponent } from './administrador/lista-admin/lista-admin.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CrearAdminComponent,
      EditarAdminComponent,
       EliminarAdminComponent, 
-      ListaAdminComponent, LoginComponent],
+      ListaAdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

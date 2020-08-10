@@ -11,12 +11,13 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('../inicio/inicio.module').then(i => i.InicioModule),
-    canActivate: [InicioGuard]
+    
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/home',
+    canActivate: [InicioGuard]
   },
 
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: '/home',
+    canActivate: [InicioGuard]
   }
 ];
 @NgModule({

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject  } from 'rxjs';
 import { ServiceConfig } from '../../config/service.config';
 import { UsuarioModel} from '../../modelos/usuario.model';
+import { AdminModel } from 'src/app/modelos/admin.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,18 @@ export class InicioService {
    * @param model Data to verify credentials
    */
   LoginUser(model: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login`, model, {
+    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login-user`, model, {
+      headers: new HttpHeaders({
+      })
+    })
+  }
+
+   /**
+   * Verify credentials of an user to login
+   * @param model Data to verify credentials
+   */
+  Loginadmin(model: AdminModel): Observable<AdminModel> {
+    return this.http.post<AdminModel>(`${ServiceConfig.BASE_URL}login-admin`, model, {
       headers: new HttpHeaders({
       })
     })
@@ -63,16 +75,30 @@ export class InicioService {
       console.log("Already exist")
       return false;
     } else {
-      let data: UsuarioModel = {
-        id_usuario: sessionData.data.id_usuario,
-        nombre_usuario: sessionData.data.nombre_usuario,
-        token: sessionData.token,
-        isLogged: true,
-        rol: sessionData.data.rol
-      };
-      localStorage.setItem('session', JSON.stringify(data));
-      this.setUserData(data);
-      return true;
+      if (sessionData.data.rol==0){
+        let data: UsuarioModel = {
+          id_usuario: sessionData.data.id_usuario,
+          nombre_usuario: sessionData.data.nombre_usuario,
+          token: sessionData.token,
+          isLogged: true,
+          rol: sessionData.data.rol
+        };
+        localStorage.setItem('session', JSON.stringify(data));
+        this.setUserData(data);
+        return true;
+      }else{
+        let data: AdminModel = {
+          correo: sessionData.data.correo,
+          token: sessionData.token,
+          isLogged: true,
+          rol: sessionData.data.rol
+        };
+        localStorage.setItem('session', JSON.stringify(data));
+        this.setUserData(data);
+        return true;
+
+      }
+      
     }
   }
 

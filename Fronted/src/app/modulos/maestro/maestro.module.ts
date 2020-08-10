@@ -8,6 +8,8 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ListaPublicacionesComponent } from './lista-publicaciones/lista-publicaciones.component';
 
+
+
 @NgModule({
   declarations: [
     NavbarComponent,

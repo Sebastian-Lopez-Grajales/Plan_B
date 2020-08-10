@@ -15,6 +15,6 @@ export class UsuarioModel {
     genero?: String;
     administradorId?: String;
     muroId?: String;
-    isLogged?: Boolean ;
+    isLogged?: Boolean;
     token?: String;
 }
