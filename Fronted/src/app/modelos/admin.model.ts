@@ -1,3 +1,7 @@
+import { PublicidadModel } from './publicidad.model';
+import { UsuarioModel } from './usuario.model';
+import { DenunciaModel } from './denuncia.model';
+
 export class AdminModel {
     clave?: String;
     correo?: String;
@@ -5,4 +9,8 @@ export class AdminModel {
     rol?: number;
     isLogged?: Boolean ;
     token?: String;
+    publicidades?: PublicidadModel;
+    id_usuario?: UsuarioModel;
+    denuncias?: DenunciaModel
+
 }

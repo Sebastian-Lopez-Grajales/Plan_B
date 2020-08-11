@@ -41,6 +41,7 @@ export class RegistrarComponent implements OnInit {
       ciudad: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
       celular: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       nacimiento: [''],
+      codigo: ['+57'],
       genero: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
       
     });
@@ -75,7 +76,7 @@ export class RegistrarComponent implements OnInit {
     model.nombre_usuario = this.fgv.n_usuario.value;
     model.correo = this.fgv.correo.value;
     model.ciudad = this.fgv.ciudad.value;
-    model.celular=this.fgv.celular.value;
+    model.celular=`${this.fgv.codigo.value}${this.fgv.celular.value}`;
     model.nacimiento=this.fgv.nacimiento.value;
     model.genero=this.fgv.genero.value;
     model.rol=0

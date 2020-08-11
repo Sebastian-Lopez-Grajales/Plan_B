@@ -9,8 +9,8 @@ import { InicioService } from 'src/app/servicios/servicios_de_inicio/inicio.serv
 })
 export class SideMenuComponent implements OnInit {
 
-  isLogged: Boolean;
-  rol: number ;
+  isLogged: Boolean=true;
+  rol: number=3 ;
   subscription: Subscription;
 
 
@@ -18,14 +18,17 @@ export class SideMenuComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-    this.subscription = this.serviceusuario.getUserData().subscribe(data => {
+    /**
+     *     this.subscription = this.serviceusuario.getUserData().subscribe(data => {
       this.isLogged = data.isLogged;
       this.rol = data.rol;
       console.log("ROle: " + this.rol);
       console.log("Data: ");
       console.log(data);
     });
+  
+
+     */
+
   }
-
-
 }

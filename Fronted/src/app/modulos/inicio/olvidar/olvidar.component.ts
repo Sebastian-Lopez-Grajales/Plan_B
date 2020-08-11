@@ -30,7 +30,7 @@ export class OlvidarComponent implements OnInit {
 
   FormBuilding() {
     this.fgValidator = this.fb.group({
-      nombre_usuairo: ['', [Validators.required, Validators.minLength(this.document_min_length)]],
+      nombre_usuario: ['', [Validators.required, Validators.minLength(this.document_min_length)]],
       tipo: ['', [Validators.required]]
     });
   }
@@ -40,12 +40,14 @@ export class OlvidarComponent implements OnInit {
       ShowNotificationMessage('Formulario Invalido.');
     } else {
       let model = this.getResetPasswordData();
+      console.log(model);
       this.service.ResetPassword(model).subscribe(
         data => {
           ShowNotificationMessage('Contraseña reestablecida, la nueva contraseña esta en tu bandeja.');
           this.router.navigate(["inicio/login-usuario"]);
         },
         err => {
+          console.log(this.getResetPasswordData);
           ShowNotificationMessage('Error en el proceso.');
         }
       );
@@ -57,7 +59,7 @@ export class OlvidarComponent implements OnInit {
    */
   getResetPasswordData(): ResetModel {
     let model = new ResetModel();
-    model.nombre_usuairo = this.fgv.nombre_usuario.value;
+    model.nombre_usuario = this.fgv.nombre_usuario.value;
     model.tipo = parseInt(this.fgv.tipo.value);
     return model;
   }

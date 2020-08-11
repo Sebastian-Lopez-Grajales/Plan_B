@@ -1,1 +1,76 @@
-<p>lista-admin works!</p>
+<a class="btn btn-success" routerLink="/admin/crear-admin" role="button">Agregar</a>
+<br />
+<br />
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <td>
+                Rol
+            </td>
+            <td>
+                Correo
+            </td>
+            <td>
+                Publicidades
+            </td>
+            <td>
+                Denuncias
+            </td>
+            <td>
+                Nombre Usuario
+            </td>
+            <td>
+                Editar
+            </td>
+            <td>
+                Eliminar
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of recordList | paginate: { itemsPerPage: itemsPageAmount, currentPage: page }">
+            <td>
+                {{r.rol}}
+            </td>
+            <td>
+                {{r.correo}}
+            </td>
+            <td>
+                {{r.publicidades.nombre}}
+            </td>
+            <td>
+                {{r.denuncias.id_denuncia}}
+            </td>
+            <td>
+                {{r.id_usuario.nombre}}
+            </td>
+            <td>
+                <a class="btn btn-warning" routerLink="/admin/editar-admin/{{r.id_administrador}}" role="button">Editar</a>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="RemoveRecordConfirmation(r.id_administrador)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<ngx-spinner></ngx-spinner>
+<div class="modal" id="removeConfirmationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro de Eliminar?
+            </div>
+            <div class="modal-footer">
+                <button (click)="RemoveRecord()" type="button" class="btn btn-success">Confirmar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

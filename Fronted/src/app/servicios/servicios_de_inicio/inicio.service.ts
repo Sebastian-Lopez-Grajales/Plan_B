@@ -11,37 +11,29 @@ import {  ResetModel} from 'src/app/modelos/reset.model';
 })
 export class InicioService {
   userData = new BehaviorSubject<UsuarioModel>(new UsuarioModel());
+  adminData = new BehaviorSubject<AdminModel>(new AdminModel());
   entity: String = 'usuarios';
 
   constructor(
     private http: HttpClient
   ) {
-    this.verifyActiveSession();
   }
 
-  verifyActiveSession() {
-    let currentSession = this.getSession();
-    console.log(currentSession);
-    if (currentSession) {
-      let userData = JSON.parse(currentSession);
-      this.setUserData(userData);
-    }
-  }
 
-  setUserData(value: UsuarioModel) {
+  setUserDatausuario(value: UsuarioModel) {
     this.userData.next(value);
   }
-
-  getUserData() {
-    return this.userData.asObservable();
+  setUserDataadmin(value: AdminModel) {
+    this.adminData.next(value);
   }
+
 
   /**
    * Verify credentials of an user to login
    * @param model Data to verify credentials
    */
   LoginUser(model: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login-user`, model, {
+    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login-usuario`, model, {
       headers: new HttpHeaders({
       })
     })
@@ -85,7 +77,7 @@ export class InicioService {
           rol: sessionData.data.rol
         };
         localStorage.setItem('session', JSON.stringify(data));
-        this.setUserData(data);
+        this.setUserDatausuario(data);
         return true;
       }else{
         let data: AdminModel = {
@@ -95,13 +87,23 @@ export class InicioService {
           rol: sessionData.data.rol
         };
         localStorage.setItem('session', JSON.stringify(data));
-        this.setUserData(data);
+        this.setUserDataadmin(data);
         return true;
 
       }
       
     }
   }
+
+
+  /**
+   * Return the token string
+   */
+  getToken(): String {
+    let currentSession = this.getSession();
+    return JSON.parse(currentSession).token;
+  }
+
 
   /**
    * Return data of session
@@ -117,40 +119,6 @@ export class InicioService {
    */
   sessionExists(): Boolean {
     return (this.getSession()) ? true : false;
-  }
-
-  /**
-   * Verify if the user in session has the roleId parameter
-   * @param roleId role to verify
-   */
-  isUserRol(roleId): Boolean {
-    let currentSession = this.getSession();
-    console.log(currentSession);
-    console.log("roleId: " + roleId);
-    console.log(JSON.parse(currentSession).rol == roleId);
-    return JSON.parse(currentSession).rol == roleId;
-  }
-
-  /**
-   * Return the token string
-   */
-  getToken(): String {
-    let currentSession = this.getSession();
-    return JSON.parse(currentSession).token;
-  }
-
-  getUserId(): String {
-    let currentSession = this.getSession();
-    return JSON.parse(currentSession).id;
-  }
-
-
-  /**
-   * close the current session
-   */
-  Logout() {
-    localStorage.removeItem('session');
-    this.setUserData(new UsuarioModel());
   }
 
   ResetPassword(model: ResetModel): Observable<Boolean> {

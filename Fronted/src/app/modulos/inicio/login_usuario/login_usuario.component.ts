@@ -41,6 +41,7 @@ export class LoginusuarioComponent implements OnInit {
       ShowNotificationMessage('Formulario Invalido.');
     } else {
       let model = this.getLoginData();
+      console.log(model)
       this.service.LoginUser(model).subscribe(
         data => {
           ShowNotificationMessage('Bienvenido.');

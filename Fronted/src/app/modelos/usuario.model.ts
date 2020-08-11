@@ -9,7 +9,7 @@ export class UsuarioModel {
     correo?: String;
     clave?: String;
     ciudad?: String;
-    celular?: number;
+    celular?: String;
     nacimiento?: String;
     foto?: String;
     genero?: String;

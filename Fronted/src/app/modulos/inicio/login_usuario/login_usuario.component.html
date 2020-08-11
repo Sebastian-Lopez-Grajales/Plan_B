@@ -43,7 +43,7 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input formControlName="clave" type="text" class="form-control" placeholder="Clave *"  />
+                                    <input formControlName="clave" type="password" class="form-control" placeholder="Clave *"  />
                                 </div>
                                 <div class="warning-validator" *ngIf="fgv.clave.errors && (fgv.clave.dirty || fgv.clave.touched)">
                                     <strong *ngIf="fgv.clave.errors.required">

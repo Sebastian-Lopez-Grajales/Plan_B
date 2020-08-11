@@ -1,4 +1,4 @@
 export class ResetModel{
-    nombre_usuairo: String;
+    nombre_usuario: String;
     tipo: number;
 }

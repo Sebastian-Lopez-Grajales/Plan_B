@@ -17,7 +17,7 @@ export class NavbarComponent {
      private router: Router ) { }
 
   ngOnInit(): void {
-   let sesion=this.serviceusuario.getSession();
+   let sesion=this.serviceusuario.sessionExists();
    if (!sesion){
       this.router.navigate(["/inicio/login-usuario"]);
    }

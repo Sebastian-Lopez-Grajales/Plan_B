@@ -16,37 +16,32 @@
                                 <h2 class="text-center">Contraseña Olvidada?</h2>
                                 <p>Puedes reestablecerla aqui..</p>
                                 <form [formGroup]="fgValidator">
-                                <form id="register-form" role="form" autocomplete="off" class="form" method="post">
-                        
                                     <div class="form-group">
                                         <div class="input-group">
                                             <select class="form-control" formControlName="tipo" id="sel1">
-                                                <option selected="true" disabled="disabled">Seleccione el metodo de reestablecimiento</option>
+                                                <option value selected="true" >Seleccione el metodo de reestablecimiento</option>
                                                 <option value="1">Clave via SMS</option>
-                                                <option value="1">Clave via Correo electronico</option>
-                                                
+                                                <option value="2">Clave via Correo electronico</option> 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                            <input formControlName="username" id="forgetAnswer" name="forgetAnswer" placeholder="Nombre de Usuario" class="form-control"  type="text">
-                                            <div class="warning-validator" *ngIf="fgv.nombre_usuario.errors && (fgv.nombre_usuario.dirty || fgv.nombre_usuario.touched)">
-                                                <strong *ngIf="fgv.nombre_usuario.errors.required">
-                                                    Campo requerido.
-                                                </strong>
-                                                <strong *ngIf="fgv.nombre_usuario.errors.minlength">
-                                                    El nombre de usuario contiene minimo {{document_min_length}} letras. 
-                                                </strong>
-                                            </div>
+                                            <input formControlName="nombre_usuario" id="forgetAnswer" name="forgetAnswer" placeholder="Nombre de Usuario" class="form-control"  type="text">
+                                        </div>
+                                        <div class="warning-validator" *ngIf="fgv.nombre_usuario.errors && (fgv.nombre_usuario.dirty || fgv.nombre_usuario.touched)">
+                                            <strong *ngIf="fgv.nombre_usuario.errors.required">
+                                                Campo requerido.
+                                            </strong>
+                                            <strong *ngIf="fgv.nombre_usuario.errors.minlength">
+                                                El nombre contiene minimo {{document_min_length}} letras. 
+                                            </strong>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input name="btnForget" (click)="ResetPassword()" class="btn btn-lg btn-primary btn-block btnForget" value="Reset Password" type="submit">
+                                        <input name="btnForget" (click)="ResetPassword()" class="btn btn-lg btn-primary btn-block btnForget" value="Reset Password" type="button">
                                     </div>
-
-                                </form>
                             </form>
                             </div>
                         </div>
