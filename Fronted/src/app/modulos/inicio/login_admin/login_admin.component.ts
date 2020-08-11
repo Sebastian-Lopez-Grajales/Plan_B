@@ -15,8 +15,6 @@ declare const ShowNotificationMessage: any;
 export class LoginadminComponent implements OnInit {
 
   fgValidator: FormGroup;
-  document_min_length: number = FormsConfig.MIN_LENGTH;
-  document_max_length: number = FormsConfig.MAX_LENGTH;
 
   constructor(
     private fb: FormBuilder,
@@ -38,17 +36,17 @@ export class LoginadminComponent implements OnInit {
 
   LoginUseradmin() {
     if (this.fgValidator.invalid) {
-      ShowNotificationMessage('Invalid Form.');
+      ShowNotificationMessage('Formulario Invalido.');
     } else {
       let model = this.getLoginData();
       this.service.Loginadmin(model).subscribe(
         data => {
-          ShowNotificationMessage('Welcome.');
+          ShowNotificationMessage('Bienvenido.');
           let res = this.service.saveSession(data);
           this.router.navigate(["/maestro/home"]);
         },
         err => {
-          ShowNotificationMessage('Invalid data, please enter a correct user and password.');
+          ShowNotificationMessage('Usuario o Contraseña Invalido...');
         }
       );
     }
@@ -61,7 +59,6 @@ export class LoginadminComponent implements OnInit {
     let model = new AdminModel();
     model.correo = this.fgv.correo.value;
     model.clave = MD5(this.fgv.clave.value).toString();
-    console.log(model);
     return model;
   }
 

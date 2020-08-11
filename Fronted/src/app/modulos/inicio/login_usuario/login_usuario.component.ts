@@ -16,7 +16,7 @@ export class LoginusuarioComponent implements OnInit {
 
   fgValidator: FormGroup;
   document_min_length: number = FormsConfig.MIN_LENGTH;
-  document_max_length: number = FormsConfig.MAX_LENGTH;
+
 
   constructor(
     private fb: FormBuilder,
@@ -38,17 +38,17 @@ export class LoginusuarioComponent implements OnInit {
 
   LoginUser() {
     if (this.fgValidator.invalid) {
-      ShowNotificationMessage('Invalid Form.');
+      ShowNotificationMessage('Formulario Invalido.');
     } else {
       let model = this.getLoginData();
       this.service.LoginUser(model).subscribe(
         data => {
-          ShowNotificationMessage('Welcome.');
+          ShowNotificationMessage('Bienvenido.');
           let res = this.service.saveSession(data);
           this.router.navigate(["/maestro/home"]);
         },
         err => {
-          ShowNotificationMessage('Invalid data, please enter a correct user and password.');
+          ShowNotificationMessage('Usuario o Contraseña Invalido..');
         }
       );
     }
@@ -61,7 +61,6 @@ export class LoginusuarioComponent implements OnInit {
     let model = new UsuarioModel();
     model.nombre_usuario = this.fgv.nombre_usuario.value;
     model.clave = MD5(this.fgv.clave.value).toString();
-    console.log(model);
     return model;
   }
 

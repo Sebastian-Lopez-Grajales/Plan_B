@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject  } from 'rxjs';
 import { ServiceConfig } from '../../config/service.config';
 import { UsuarioModel} from '../../modelos/usuario.model';
 import { AdminModel } from 'src/app/modelos/admin.model';
+import {  ResetModel} from 'src/app/modelos/reset.model';
 
 @Injectable({
   providedIn: 'root'
@@ -152,4 +153,10 @@ export class InicioService {
     this.setUserData(new UsuarioModel());
   }
 
+  ResetPassword(model: ResetModel): Observable<Boolean> {
+    return this.http.post<Boolean>(`${ServiceConfig.BASE_URL}password-reset`, model, {
+      headers: new HttpHeaders({
+      })
+    })
+  }
 }

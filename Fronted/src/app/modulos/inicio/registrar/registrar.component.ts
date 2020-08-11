@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioModel } from '../../../modelos/usuario.model';
 import { InicioService } from '../../../servicios/servicios_de_inicio/inicio.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsConfig } from 'src/app/config/forms-config';
 
 declare const ShowNotificationMessage: any;
 
@@ -14,6 +15,8 @@ declare const ShowNotificationMessage: any;
 export class RegistrarComponent implements OnInit {
 
   fgValidator: FormGroup;
+  document_min_length: number = FormsConfig.MIN_LENGTH;
+  document_max_length: number = FormsConfig.MAX_LENGTH;
 
   constructor(
     private fb: FormBuilder,
@@ -29,32 +32,32 @@ export class RegistrarComponent implements OnInit {
   FormBuilding() {
     this.fgValidator = this.fb.group({
 
-      p_nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(33)]],
-      s_nombre: ['', [ Validators.minLength(2), Validators.maxLength(33)]],
-      p_apellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(33)]],
-      s_apellido: ['', [ Validators.minLength(2), Validators.maxLength(33)]],
-      n_usuario: ['', [ Validators.required,Validators.minLength(6), Validators.maxLength(18)]],
+      p_nombre: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
+      s_nombre: ['', [ Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
+      p_apellido: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
+      s_apellido: ['', [ Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
+      n_usuario: ['', [ Validators.required,Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
       correo: ['', [Validators.required, Validators.email]],
-      ciudad: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(33)]],
+      ciudad: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
       celular: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       nacimiento: [''],
-      genero: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(13)]],
+      genero: ['', [Validators.required, Validators.minLength(this.document_min_length), Validators.maxLength(this.document_max_length)]],
       
     });
   }
   UsuarioModelRegister() {
     if (this.fgValidator.invalid) {
-      ShowNotificationMessage('Invalid Form');
+      ShowNotificationMessage('Formulario Invalido');
     } else {
       let model = this.getUsuarioModelData();
       console.log(model);
       this.service.UserRegister(model).subscribe(data => {
         console.log(data);
         if (data) {
-          ShowNotificationMessage('Registration has been successful. You cand found the password in your mail inbox.');
-          this.router.navigate(['/inicio/login']);
+          ShowNotificationMessage('Registro exitoso, la contraseña esta en el correo electronico proporcionado.');
+          this.router.navigate(['/inicio/login-usuario']);
         } else {
-          ShowNotificationMessage('Error registering data.');
+          ShowNotificationMessage('Error en el proceso.');
         }
       });
     }
