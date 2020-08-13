@@ -1,4 +1,4 @@
-import { MuroModel } from './muro.model';
+
 import {DenunciaModel } from './denuncia.model';
 import { UsuarioModel } from './usuario.model';
 import { ComentarioModel } from './comentario.model';
@@ -11,7 +11,6 @@ export class PublicacionModel {
     compartido: number;
     fecha?: String;
     usuarioId?: UsuarioModel;
-    muroId?: MuroModel;
     denuncias?: DenunciaModel;
     comentarios?: ComentarioModel
 

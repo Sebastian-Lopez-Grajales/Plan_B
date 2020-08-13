@@ -52,7 +52,7 @@ export class RegistrarComponent implements OnInit {
     } else {
       let model = this.getUsuarioModelData();
       console.log(model);
-      this.service.UserRegister(model).subscribe(data => {
+      this.service.Registrarusuario(model).subscribe(data => {
         console.log(data);
         if (data) {
           ShowNotificationMessage('Registro exitoso, la contraseña esta en el correo electronico proporcionado.');

@@ -42,7 +42,7 @@ export class LoginadminComponent implements OnInit {
       this.service.Loginadmin(model).subscribe(
         data => {
           ShowNotificationMessage('Bienvenido.');
-          let res = this.service.saveSession(data);
+          let res = this.service.guardarsesion(data);
           this.router.navigate(["/maestro/home"]);
         },
         err => {

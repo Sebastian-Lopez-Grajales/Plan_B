@@ -1,13 +1,18 @@
 import { AdminModel } from './admin.model';
-import { MuroModel } from './muro.model';
+import { ImagenModel } from './imagen.model';
 
 export class PublicidadModel {
     id_publicidad?: String;
     nombre?: String;
     contenido?: String;
     fecha?: String;
-    order?: number;
-    id_administrador?: AdminModel;
-    id_muro?: MuroModel
+    orden?: number;
+    id_administrador?: String;
+    id_muro?:String;
+    id_imagen?:String;
+    imagen?: ImagenModel;
+    publicidad?: AdminModel;
+    
+
 
 }

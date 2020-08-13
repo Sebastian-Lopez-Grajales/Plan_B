@@ -42,10 +42,10 @@ export class LoginusuarioComponent implements OnInit {
     } else {
       let model = this.getLoginData();
       console.log(model)
-      this.service.LoginUser(model).subscribe(
+      this.service.LoginUsuario(model).subscribe(
         data => {
           ShowNotificationMessage('Bienvenido.');
-          let res = this.service.saveSession(data);
+          let res = this.service.guardarsesion(data);
           this.router.navigate(["/maestro/home"]);
         },
         err => {

@@ -20,6 +20,8 @@ export class NavbarComponent {
    let sesion=this.serviceusuario.sessionExists();
    if (!sesion){
       this.router.navigate(["/inicio/login-usuario"]);
+   }else{
+     this.sesion=true;
    }
 
 

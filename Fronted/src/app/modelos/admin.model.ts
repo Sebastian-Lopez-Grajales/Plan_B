@@ -9,8 +9,8 @@ export class AdminModel {
     rol?: number;
     isLogged?: Boolean ;
     token?: String;
-    publicidades?: PublicidadModel;
-    id_usuario?: UsuarioModel;
-    denuncias?: DenunciaModel
+    administrador?:UsuarioModel;
+    id_usuario?: String;
+    celular?:String
 
 }

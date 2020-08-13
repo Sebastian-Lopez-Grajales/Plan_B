@@ -11,10 +11,7 @@
                 Correo
             </td>
             <td>
-                Publicidades
-            </td>
-            <td>
-                Denuncias
+                Celular
             </td>
             <td>
                 Nombre Usuario
@@ -36,13 +33,10 @@
                 {{r.correo}}
             </td>
             <td>
-                {{r.publicidades.nombre}}
+                {{r.celular}}
             </td>
             <td>
-                {{r.denuncias.id_denuncia}}
-            </td>
-            <td>
-                {{r.id_usuario.nombre}}
+                {{r.administrador.nombre_usuario}}
             </td>
             <td>
                 <a class="btn btn-warning" routerLink="/admin/editar-admin/{{r.id_administrador}}" role="button">Editar</a>
@@ -68,7 +62,7 @@
                 ¿Seguro de Eliminar?
             </div>
             <div class="modal-footer">
-                <button (click)="RemoveRecord()" type="button" class="btn btn-success">Confirmar</button>
+                <button (click)="eliminaradmin()" type="button" class="btn btn-success">Confirmar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

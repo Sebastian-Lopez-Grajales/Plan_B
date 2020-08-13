@@ -41,7 +41,7 @@ export class OlvidarComponent implements OnInit {
     } else {
       let model = this.getResetPasswordData();
       console.log(model);
-      this.service.ResetPassword(model).subscribe(
+      this.service.claveolvidada(model).subscribe(
         data => {
           ShowNotificationMessage('Contraseña reestablecida, la nueva contraseña esta en tu bandeja.');
           this.router.navigate(["inicio/login-usuario"]);

@@ -10,9 +10,9 @@ import {  ResetModel} from 'src/app/modelos/reset.model';
   providedIn: 'root'
 })
 export class InicioService {
-  userData = new BehaviorSubject<UsuarioModel>(new UsuarioModel());
+  usuarioData = new BehaviorSubject<UsuarioModel>(new UsuarioModel());
   adminData = new BehaviorSubject<AdminModel>(new AdminModel());
-  entity: String = 'usuarios';
+  usuarios: String = 'usuarios';
 
   constructor(
     private http: HttpClient
@@ -20,19 +20,26 @@ export class InicioService {
   }
 
 
-  setUserDatausuario(value: UsuarioModel) {
-    this.userData.next(value);
+  /**
+   * modificar usuario almacenado
+   */
+  setusuarioData(value: UsuarioModel) {
+    this.usuarioData.next(value);
   }
-  setUserDataadmin(value: AdminModel) {
+
+    /**
+   * modificar admin almacenado
+   */
+  setadminData(value: AdminModel) {
     this.adminData.next(value);
   }
 
 
   /**
-   * Verify credentials of an user to login
-   * @param model Data to verify credentials
+   * verifica credenciales usuario para entrar
+   * @param model 
    */
-  LoginUser(model: UsuarioModel): Observable<UsuarioModel> {
+  LoginUsuario(model: UsuarioModel): Observable<UsuarioModel> {
     return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}login-usuario`, model, {
       headers: new HttpHeaders({
       })
@@ -40,8 +47,8 @@ export class InicioService {
   }
 
    /**
-   * Verify credentials of an user to login
-   * @param model Data to verify credentials
+   * verifica credenciales admin para entrar
+   * @param model 
    */
   Loginadmin(model: AdminModel): Observable<AdminModel> {
     return this.http.post<AdminModel>(`${ServiceConfig.BASE_URL}login-admin`, model, {
@@ -50,18 +57,23 @@ export class InicioService {
     })
   }
 
-  UserRegister(model: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}${this.entity}`, model, {
+
+    /**
+   * permite crear un usuario nuevo
+   */
+  Registrarusuario(model: UsuarioModel): Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(`${ServiceConfig.BASE_URL}${this.usuarios}`, model, {
       headers: new HttpHeaders({
 
       })
     })
   }
+
    /**
-   * Save data of new session
-   * @param sessionData Object with user in session data
+   * Guarda info de nueva sesion
+   * 
    */
-  saveSession(sessionData: any): Boolean {
+  guardarsesion(sessionData: any): Boolean {
     console.log(sessionData);
     let currentSession = localStorage.getItem('session');
     if (currentSession) {
@@ -77,7 +89,7 @@ export class InicioService {
           rol: sessionData.data.rol
         };
         localStorage.setItem('session', JSON.stringify(data));
-        this.setUserDatausuario(data);
+        this.setusuarioData(data);
         return true;
       }else{
         let data: AdminModel = {
@@ -87,7 +99,7 @@ export class InicioService {
           rol: sessionData.data.rol
         };
         localStorage.setItem('session', JSON.stringify(data));
-        this.setUserDataadmin(data);
+        this.setadminData(data);
         return true;
 
       }
@@ -97,31 +109,34 @@ export class InicioService {
 
 
   /**
-   * Return the token string
+   * Regresa el token guardado
    */
   getToken(): String {
-    let currentSession = this.getSession();
+    let currentSession = this.getsesion();
     return JSON.parse(currentSession).token;
   }
 
 
   /**
-   * Return data of session
+   * Return info de sesion guardada
    */
-  getSession() {
+  getsesion() {
     let currentSession = localStorage.getItem('session');
     //console.log(currentSession);
     return currentSession;
   }
 
   /**
-   * Verify if a session is active
+   * verifica si hay o no sesion
    */
   sessionExists(): Boolean {
-    return (this.getSession()) ? true : false;
+    return (this.getsesion()) ? true : false;
   }
 
-  ResetPassword(model: ResetModel): Observable<Boolean> {
+    /**
+   * resetea clave olvidada
+   */
+  claveolvidada(model: ResetModel): Observable<Boolean> {
     return this.http.post<Boolean>(`${ServiceConfig.BASE_URL}password-reset`, model, {
       headers: new HttpHeaders({
       })

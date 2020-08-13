@@ -16,7 +16,7 @@ declare const closeModal: any;
 export class ListaAdminComponent implements OnInit {
 
   page: number = 1;
-  recordList: AdminModel[];
+  adminList: AdminModel[];
   removeRecordId: String = '';
   itemsPageAmount: number = FormsConfig.ITEMS_PER_PAGE;
 
@@ -26,19 +26,19 @@ export class ListaAdminComponent implements OnInit {
   ngOnInit(): void {
         /** spinner starts on init */
         this.spinner.show();
-        this.getRecordList();
+        this.getadminlist();
   }
-  getRecordList() {
-    this.service.getAllRecords().subscribe(
+  getadminlist() {
+    this.service.getadministradores().subscribe(
       records => {
-        this.recordList = records;
+        this.adminList = records;
         setTimeout(() => {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
         }, 1000);
       },
       error => {
-        ShowNotificationMessage("There is a problem with backend communication.");
+        ShowNotificationMessage("Problema en el servidor.");
       }
     );
   }
@@ -48,15 +48,15 @@ export class ListaAdminComponent implements OnInit {
     ShowRemoveConfirmationModal();
   }
 
-  RemoveRecord() {
-    this.service.removeRecord(this.removeRecordId).subscribe(
+  eliminaradmin() {
+    this.service.eliminaradmnistrador(this.removeRecordId).subscribe(
       data => {
         closeModal("removeConfirmationModal");
-        ShowNotificationMessage('Record has been removed successfuly.');
-        this.getRecordList();
+        ShowNotificationMessage('Eliminacion Completa.');
+        this.getadminlist();
       },
       error => {
-        ShowNotificationMessage('Error removing record.');
+        ShowNotificationMessage('Error en la eliminacion.');
       }
     );
   }
