@@ -17,51 +17,42 @@ const routes: Routes = [
 
   {
     path: 'lista-denuncia',
-    component: ListaDenunciasComponent,
-    canActivate: [ParametrosGuard]
+    component: ListaDenunciasComponent
   },
   {
     path: 'crear-denuncia',
-    component: CrearDenunciasComponent,
-    canActivate: [ParametrosGuard]
+    component: CrearDenunciasComponent
   },
   {
     path: 'editar-denuncia/:id_denuncia',
-    component: EditarDenunciasComponent,
-    canActivate: [ParametrosGuard]
+    component: EditarDenunciasComponent
   },
   
 
   {
     path: 'lista-publicidad',
-    component: ListaPublicidadComponent,
-    canActivate: [ParametrosGuard]
+    component: ListaPublicidadComponent
   },
   {
     path: 'crear-publicidad',
-    component: CrearPublicidadComponent,
-    canActivate: [ParametrosGuard]
+    component: CrearPublicidadComponent
   },
   {
     path: 'editar-publicidad/:id_publicidad',
-    component: EditarPublicidadComponent,
-    canActivate: [ParametrosGuard]
+    component: EditarPublicidadComponent
   },
 
   {
     path: 'lista-publicacion',
-    component: ListaPublicacionesComponent,
-    canActivate: [ParametrosGuard]
+    component: ListaPublicacionesComponent
   },
   {
     path: 'crear-publicacion/:id_usuario',
-    component: CrearPublicacionesComponent,
-    canActivate: [ParametrosGuard]
+    component: CrearPublicacionesComponent
   },
   {
     path: 'editar-publicacion/:id_publicacion',
-    component: EditarPublicacionesComponent,
-    canActivate: [ParametrosGuard]
+    component: EditarPublicacionesComponent
   }
 
 
