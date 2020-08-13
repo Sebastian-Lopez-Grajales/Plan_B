@@ -19,9 +19,9 @@ export class InicioGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
       if (this.servicio_usuario.sessionExists()) {
-        this.router.navigate(["/home"]);
         return false;
       } else {
+        this.router.navigate(["/inicio/login-usuario"]);
         return true;
       }
   }

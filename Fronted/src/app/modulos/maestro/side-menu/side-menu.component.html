@@ -6,7 +6,13 @@
             <a *ngIf="rol == 3" routerLink="/admin/lista-admin">Administradores </a>
           </li>
           <li>
-            <a *ngIf="rol >=1" routerLink="/admin/lista-parametros">Parametros </a>
+            <a *ngIf="rol >=1" routerLink="/admin/lista-parametros">Publicidad </a>
+          </li>
+          <li>
+            <a *ngIf="rol >=1" routerLink="/admin/lista-parametros">Publicacion </a>
+          </li>
+          <li>
+            <a *ngIf="rol >=1" routerLink="/admin/lista-parametros">Denuncias </a>
           </li>
           <li>
             <a  *ngIf="rol >=0" routerLink="/usuario/editar-perfil">Editar Perfil </a>
@@ -24,7 +30,7 @@
             <a  *ngIf="rol >=0" routerLink="/usuario/resetear">Resetear Clave </a>
           </li>
           <li>
-            <a  *ngIf="rol >=0" >Cerrar sesion </a>
+            <a  *ngIf="rol >=0" routerLink="/inicio/login-usuario" (click)="logout()" >Cerrar sesion  </a>
           </li>
 
       </ul>
@@ -35,7 +41,7 @@
   <div id="page-content-wrapper">
       <div class="container-fluid">
           <router-outlet>
-
+            
           </router-outlet>
           <app-footer>
     

@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ListaPublicacionesComponent } from './lista-publicaciones/lista-publicaciones.component';
-
+import { InicioModule  } from '../inicio/inicio.module';
 
 
 @NgModule({
@@ -21,7 +21,8 @@ import { ListaPublicacionesComponent } from './lista-publicaciones/lista-publica
   imports: [
     BrowserModule,
     MaestroRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    InicioModule
   ],
   providers: [],
   bootstrap: [NavbarComponent]

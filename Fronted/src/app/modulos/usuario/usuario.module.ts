@@ -12,13 +12,19 @@ import { ListarMensajesComponent } from './mensajes/listar-mensajes/listar-mensa
 import { EditarComentariosComponent } from './comentarios/editar-comentarios/editar-comentarios.component';
 import { ListarComentariosComponent } from './comentarios/listar-comentarios/listar-comentarios.component';
 import { EliminarComentariosComponent } from './comentarios/eliminar-comentarios/eliminar-comentarios.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [ResetearComponent, EditarComponent, EliminarContactosComponent, AgregarContactosComponent, ListarContactosComponent, EliminarMensajesComponent, ListarMensajesComponent, EditarComentariosComponent, ListarComentariosComponent, EliminarComentariosComponent],
   imports: [
     CommonModule,
-    UsuarioRoutingModule
-  ]
+    UsuarioRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
+    NgxSpinnerModule]
 })
 export class UsuarioModule { }

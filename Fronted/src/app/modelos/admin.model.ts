@@ -6,8 +6,8 @@ export class AdminModel {
     clave?: String;
     correo?: String;
     id_administrador?: String;
-    rol?: number;
-    isLogged?: Boolean ;
+    rol?: number = 4;
+    isLogged?: Boolean =false ;
     token?: String;
     administrador?:UsuarioModel;
     id_usuario?: String;

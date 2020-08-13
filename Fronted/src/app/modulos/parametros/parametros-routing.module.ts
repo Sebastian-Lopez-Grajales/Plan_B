@@ -9,47 +9,59 @@ import { EditarPublicidadComponent } from './publicidad/editar-publicidad/editar
 import { ListaPublicacionesComponent } from './publicaciones/lista-publicaciones/lista-publicaciones.component';
 import { CrearPublicacionesComponent } from './publicaciones/crear-publicaciones/crear-publicaciones.component';
 import { EditarPublicacionesComponent } from './publicaciones/editar-publicaciones/editar-publicaciones.component';
+import { ParametrosGuard } from 'src/app/guardias/parametros/parametros.guard';
+
+
 
 const routes: Routes = [
 
   {
     path: 'lista-denuncia',
-    component: ListaDenunciasComponent
+    component: ListaDenunciasComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'crear-denuncia',
-    component: CrearDenunciasComponent
+    component: CrearDenunciasComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'editar-denuncia/:id_denuncia',
-    component: EditarDenunciasComponent
+    component: EditarDenunciasComponent,
+    canActivate: [ParametrosGuard]
   },
   
 
   {
     path: 'lista-publicidad',
-    component: ListaPublicidadComponent
+    component: ListaPublicidadComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'crear-publicidad',
-    component: CrearPublicidadComponent
+    component: CrearPublicidadComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'editar-publicidad/:id_publicidad',
-    component: EditarPublicidadComponent
+    component: EditarPublicidadComponent,
+    canActivate: [ParametrosGuard]
   },
 
   {
     path: 'lista-publicacion',
-    component: ListaPublicacionesComponent
+    component: ListaPublicacionesComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'crear-publicacion/:id_usuario',
-    component: CrearPublicacionesComponent
+    component: CrearPublicacionesComponent,
+    canActivate: [ParametrosGuard]
   },
   {
     path: 'editar-publicacion/:id_publicacion',
-    component: EditarPublicacionesComponent
+    component: EditarPublicacionesComponent,
+    canActivate: [ParametrosGuard]
   }
 
 

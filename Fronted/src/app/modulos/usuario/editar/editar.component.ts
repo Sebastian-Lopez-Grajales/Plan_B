@@ -74,7 +74,7 @@ export class EditarComponent implements OnInit {
     });
   }
 
-  editaradmin() {
+  editar() {
     if (this.fgValidator.invalid) {
       ShowNotificationMessage('Formulario Ivalido');
     } else {

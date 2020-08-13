@@ -21,6 +21,25 @@ export class InicioService {
 
 
   /**
+   * Verify if the user in session has the roleId parameter
+   * @param roleId role to verify
+   */
+  issuper(roleId): Boolean {
+    let currentSession = this.getsesion();
+    return JSON.parse(currentSession).rol == roleId;
+  }
+
+  isuser(roleId): Boolean {
+    let currentSession = this.getsesion();
+    return JSON.parse(currentSession).rol >= roleId;
+  }
+
+  isadmin(roleId): Boolean {
+    let currentSession = this.getsesion();
+    return JSON.parse(currentSession).rol >= roleId;
+  }
+
+  /**
    * modificar usuario almacenado
    */
   setusuarioData(value: UsuarioModel) {
@@ -141,5 +160,22 @@ export class InicioService {
       headers: new HttpHeaders({
       })
     })
+  }
+
+      /**
+   * close the current session
+   */
+  Logout() {
+    localStorage.removeItem('session');
+    this.setusuarioData(new UsuarioModel());
+    this.setadminData(new AdminModel());
+  }
+
+  getUserData() {
+    return this.usuarioData.asObservable();
+  }
+
+  getadminData() {
+    return this.adminData.asObservable();
   }
 }

@@ -5,10 +5,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li  class="nav-item active">
-          <button onclick="toggleSideBar()" type="button" class="btn btn-outline-danger">Menu</button>
+          <button onclick="toggleSideBar()" type="button"  class="btn btn-light">Menu</button>
         </li>
         <li  class="nav-item active">
-          <button  type="button" class="btn btn-outline-danger" routerLink="/maestro/Inicio" >Inicio</button>
+          <button type="button" class="btn btn-light" routerLink="/maestro/home" >Home</button>
         </li>
       </ul>
     </div>
@@ -16,6 +16,6 @@
   <app-side-menu *ngIf="sesion" >
     
   </app-side-menu>
-<router-outlet *ngIf="!sesion">
-</router-outlet>
+<app-navbarl *ngIf="!sesion">
+</app-navbarl>
 

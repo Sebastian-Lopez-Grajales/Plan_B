@@ -7,7 +7,7 @@ export class UsuarioModel {
     primer_apellido?: String;
     segundo_apellido?: String;
     nombre_usuario?: String;
-    rol?: number;
+    rol?: number=4;
     correo?: String;
     clave?: String;
     ciudad?: String;
@@ -17,6 +17,6 @@ export class UsuarioModel {
     genero?: String;
     administrador?: AdminModel;
     administradorId?:String;
-    isLogged?: Boolean;
+    isLogged?: Boolean = false;
     token?: String;
 }

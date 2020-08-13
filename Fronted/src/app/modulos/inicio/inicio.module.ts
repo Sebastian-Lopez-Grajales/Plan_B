@@ -24,6 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InicioRoutingModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  exports: [
+    NavbarComponent
+    
   ]
 })
 export class InicioModule { }
