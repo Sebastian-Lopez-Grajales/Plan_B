@@ -1,1 +1,77 @@
-<p>crear-denuncias works!</p>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <form [formGroup]="uploadForm">
+            <div class="form-group input-group">
+                <input formControlName="file" (change)="onFileSelect($event)" name="file" class="form-control"
+                    type="file">
+                <input type="button" value="Upload" (click)="UploadImage()" />
+                <div class="warning-validator" *ngIf="fgv.file.errors && (fgv.file.dirty || fgv.file.touched)">
+                    <strong *ngIf="fgv.file.errors.required">
+                        Campo Obligatorio!.
+                    </strong>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="fgValidator">
+            <div class="form-group input-group">
+                <input formControlName="titulo" name="titulo" class="form-control" placeholder="titulo"
+                    type="text">
+                <div class="warning-validator"
+                    *ngIf="fgv.titulo.errors && (fgv.titulo.dirty || fgv.titulo.touched)">
+                    <strong *ngIf="fgv.titulo.errors.required">
+                        Campo Obligatorio!
+                    </strong>
+                </div>
+            </div>
+            <div class="form-group input-group">
+                <input formControlName="descripcion" name="descripcion" class="form-control" placeholder="descripcion"
+                    type="text">
+                <div class="warning-validator"
+                    *ngIf="fgv.descripcion.errors && (fgv.descripcion.dirty || fgv.descripcion.touched)">
+                    <strong *ngIf="fgv.descripcion.errors.required">
+                        Campo Obligatorio!
+                    </strong>
+                    <strong *ngIf="fgv.descripcion.errors.email">
+                        Correo incorrecto.
+                    </strong>
+                </div>
+            </div>
+            <div class="form-group input-group">
+                <input formControlName="fecha" name="fecha" class="form-control" placeholder="fecha" type="date">
+                <div class="warning-validator" *ngIf="fgv.fecha.errors && (fgv.fecha.dirty || fgv.fecha.touched)">
+                    <strong *ngIf="fgv.fecha.errors.required">
+                        Campo Obligatorio!
+                    </strong>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Administrador</label>
+                <select class="form-control" formControlName="id_administrador" id="id_administrador">
+                    <option *ngFor="let a of administradorList" value="{{a.id_administrador}}">{{a.correo}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Publicacion</label>
+                <select class="form-control" formControlName="id_publicacion" id="id_publicacion">
+                    <option *ngFor="let a of publicacionList" value="{{a.id_publicacion}}">{{a.nombre}}</option>
+                </select>
+            </div>
+            <div class="form-group input-group">
+                <input formControlName="resuelto" name="resuelto" class="form-control" placeholder="resuelto" type="text">
+                <div class="warning-validator" *ngIf="fgv.resuelto.errors && (fgv.resuelto.dirty || fgv.resuelto.touched)">
+                    <strong *ngIf="fgv.resuelto.errors.required">
+                        Campo Obligatorio!
+                    </strong>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" (click)="crear()" class="btn btn-primary"> Crear
+                </button>
+                &nbsp;&nbsp;
+                <a class="btn btn-warning" routerLink="/parametros/lista-denuncias" role="button">Cancelar</a>
+            </div> <!-- form-group// -->
+        </form>
+    </article>
+</div> <!-- card.// -->

@@ -1,3 +1,5 @@
+import { AdminModel } from './admin.model';
+
 export class UsuarioModel {
     id_usuario?: String;
     primer_nombre?: String;
@@ -13,8 +15,8 @@ export class UsuarioModel {
     nacimiento?: String;
     foto?: String;
     genero?: String;
-    administradorId?: String;
-    muroId?: String;
+    administrador?: AdminModel;
+    administradorId?:String;
     isLogged?: Boolean;
     token?: String;
 }

@@ -1,1 +1,82 @@
-<p>lista-denuncias works!</p>
+<a class="btn btn-success" routerLink="/parametros/crear-denuncia" role="button">Agregar</a>
+<br />
+<br />
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <td>
+                Titulo
+            </td>
+            <td>
+                Descripcion
+            </td>
+            <td>
+                fecha
+            </td>
+            <td>
+                Publicacion
+            </td>
+            <td>
+                Administrador
+            </td>
+            <td>
+                Resuelto
+            </td>
+            <td>
+                Editar
+            </td>
+            <td>
+                Eliminar
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of denunciaList | paginate: { itemsPerPage: itemsPageAmount, currentPage: page }">
+            <td>
+                {{r.titulo}}
+            </td>
+            <td>
+                {{r.descripcion}}
+            </td>
+            <td>
+                {{r.fecha}}
+            </td>
+            <td>
+                {{r.publicacion.nombre}}
+            </td>
+            <td>
+                {{r.administrador.correo}}
+            </td>
+            <td>
+                {{r.resuelto}}
+            </td>
+            <td>
+                <a class="btn btn-warning" routerLink="/parametros/editar-denuncia/{{r.id_denuncia}}" role="button">Editar</a>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="RemoveRecordConfirmation(r.id_denuncia)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<ngx-spinner></ngx-spinner>
+<div class="modal" id="removeConfirmationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro de Eliminar?
+            </div>
+            <div class="modal-footer">
+                <button (click)="eliminar()" type="button" class="btn btn-success">Confirmar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,6 @@ import { InicioService } from '../servicios_de_inicio/inicio.service';
 import { Observable } from 'rxjs';
 import { AdminModel } from 'src/app/modelos/admin.model';
 import { ServiceConfig } from 'src/app/config/service.config';
-import { UsuarioModule } from 'src/app/modulos/usuario/usuario.module';
 import { UsuarioModel } from 'src/app/modelos/usuario.model';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class AdminService {
   usuarios: String = 'usuarios';
   token: String;
   filteradministrador: String = '?filter={"include":[{"relation":"administrador"}]}';
-  filterusuario: String = '?filter={"include":[{"relation":"administradores"}]}';
+  filterusuario: String = '?filter={"include":[{"relation":"administrador"}]}';
 
 
   constructor(private http: HttpClient,

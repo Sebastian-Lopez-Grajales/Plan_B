@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let r of recordList | paginate: { itemsPerPage: itemsPageAmount, currentPage: page }">
+        <tr *ngFor="let r of adminList | paginate: { itemsPerPage: itemsPageAmount, currentPage: page }">
             <td>
                 {{r.rol}}
             </td>

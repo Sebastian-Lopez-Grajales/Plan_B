@@ -1,17 +1,14 @@
-
-import {DenunciaModel } from './denuncia.model';
 import { UsuarioModel } from './usuario.model';
-import { ComentarioModel } from './comentario.model';
 
 export class PublicacionModel {
     id_publicacion?: String;
+    nombre?:String;
     texto?: String;
     me_gusta?: number;
     no_gusta?: number;
-    compartido: number;
     fecha?: String;
-    usuarioId?: UsuarioModel;
-    denuncias?: DenunciaModel;
-    comentarios?: ComentarioModel
+    imagen?:String;
+    usuario?: UsuarioModel;
+    usuarioId?:String;
 
 }

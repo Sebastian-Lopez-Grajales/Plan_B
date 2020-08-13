@@ -6,6 +6,8 @@ import { PublicidadModel } from 'src/app/modelos/publicidad.model';
 import { ServiceConfig } from 'src/app/config/service.config';
 import { PublicacionModel } from 'src/app/modelos/publicacion.model';
 import { DenunciaModel } from 'src/app/modelos/denuncia.model';
+import {  CargaModel} from 'src/app/modelos/carga.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +18,23 @@ export class ParametrosService {
   denuncias: String = 'denuncias';
   publicaciones: String = 'publicaciones';
   token: String;
-  filterpublicidad: String = '?filter={"include":[{"relation":"publicidad"},{"relation":"publicidadMuro"},{"relation":"imagen"}]}';
-  filterpublicacion: String = '?filter={"include":[{"relation":"Usuario"},{"relation":"Imagen"}]}';
-  filterdenuncias: String = '?filter={"include":[{"relation":"Publicaion"},{"relation":"Administrador"}]}';
+  filterpublicidad: String = '?filter={"include":[{"relation":"publicidad"},{"relation":"publicidadMuro"}]}';
+  filterpublicacion: String = '?filter={"include":[{"relation":"usuario"}]}';
+  filterdenuncias: String = '?filter={"include":[{"relation":"publicacion"},{"relation":"administrador"}]}';
 
 
   constructor(private http: HttpClient,
     private inicioService: InicioService) {
     this.token = this.inicioService.getToken();
+  }
+
+
+  uploadImage(formData): Observable<CargaModel> {
+    return this.http.post<CargaModel>(`${ServiceConfig.BASE_URL}archivodenuncia`, formData, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    });
   }
 
   /**
