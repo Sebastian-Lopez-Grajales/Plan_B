@@ -29,7 +29,7 @@ export class ParametrosService {
   }
 
 
-  uploadImage(formData): Observable<CargaModel> {
+  uploadImagedenuncia(formData): Observable<CargaModel> {
     return this.http.post<CargaModel>(`${ServiceConfig.BASE_URL}archivodenuncia`, formData, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.token}`
@@ -37,6 +37,20 @@ export class ParametrosService {
     });
   }
 
+  uploadImagepublicacion(formData): Observable<CargaModel> {
+    return this.http.post<CargaModel>(`${ServiceConfig.BASE_URL}PublicacionImagen`, formData, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
+  uploadImagepublicidad(formData): Observable<CargaModel> {
+    return this.http.post<CargaModel>(`${ServiceConfig.BASE_URL}PublicidadImagen`, formData, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }
   /**
    * Get de todas las publicidades
    */

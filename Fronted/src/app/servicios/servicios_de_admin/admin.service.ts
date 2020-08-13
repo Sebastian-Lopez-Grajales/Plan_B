@@ -81,16 +81,7 @@ export class AdminService {
       })
     });
   }
-      /**
-   * Editar un usuario
-   */
-  editarusuario(record: UsuarioModel): Observable<UsuarioModel> {
-    return this.http.put<UsuarioModel>(`${ServiceConfig.BASE_URL}${this.usuarios}/${record.id_usuario}`, record, {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.token}`
-      })
-    });
-  }
+
 
 
     /**

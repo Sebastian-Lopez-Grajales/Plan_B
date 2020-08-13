@@ -120,7 +120,7 @@ export class CrearDenunciasComponent implements OnInit {
   UploadImage() {
     const formData = new FormData();
     formData.append('file', this.fgUpload.file.value);
-    this.service.uploadImage(formData).subscribe(
+    this.service.uploadImagedenuncia(formData).subscribe(
       data => {
         console.log("Filename. " + data);
 

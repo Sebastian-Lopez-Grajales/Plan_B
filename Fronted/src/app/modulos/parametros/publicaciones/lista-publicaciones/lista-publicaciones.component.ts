@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PublicacionModel } from 'src/app/modelos/publicacion.model';
+import { FormsConfig } from 'src/app/config/forms-config';
+import { ParametrosService } from 'src/app/servicios/servicios_de_parametros/parametros.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare const ShowNotificationMessage: any;
 declare const ShowRemoveConfirmationModal: any;
@@ -12,7 +16,7 @@ declare const closeModal: any;
 export class ListaPublicacionesComponent implements OnInit {
   
   page: number = 1;
-  denunciaList: DenunciaModel[];
+  publiList: PublicacionModel[];
   removeRecordId: String = '';
   itemsPageAmount: number = FormsConfig.ITEMS_PER_PAGE;
 
@@ -25,9 +29,9 @@ export class ListaPublicacionesComponent implements OnInit {
         this.getlist();
   }
   getlist() {
-    this.service.getdenuncias().subscribe(
+    this.service.getpublicaciones().subscribe(
       records => {
-        this.denunciaList = records;
+        this.publiList = records;
         setTimeout(() => {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
@@ -45,7 +49,7 @@ export class ListaPublicacionesComponent implements OnInit {
   }
 
   eliminar() {
-    this.service.eliminardenuncia(this.removeRecordId).subscribe(
+    this.service.eliminarpublicacion(this.removeRecordId).subscribe(
       data => {
         closeModal("removeConfirmationModal");
         ShowNotificationMessage('Eliminacion Completa.');

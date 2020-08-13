@@ -5,7 +5,6 @@ export class PublicidadModel {
     nombre?: String;
     contenido?: String;
     fecha?: String;
-    orden?: number;
     id_administrador?: String;
     publicidad?: AdminModel;
     

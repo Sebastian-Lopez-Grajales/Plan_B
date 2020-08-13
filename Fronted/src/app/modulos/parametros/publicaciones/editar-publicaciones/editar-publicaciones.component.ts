@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormsConfig } from 'src/app/config/forms-config';
+import { PublicacionModel } from 'src/app/modelos/publicacion.model';
+import { ParametrosService } from 'src/app/servicios/servicios_de_parametros/parametros.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare const ShowNotificationMessage: any;
 
@@ -10,39 +15,34 @@ declare const ShowNotificationMessage: any;
 export class EditarPublicacionesComponent implements OnInit {
 
 
+  
   fgValidator: FormGroup;
   minLengthName: number = FormsConfig.MIN_LENGTH;
   maxLengthCode: number = FormsConfig.MAX_LENGTH;
   publicacionList: PublicacionModel[];
-  administradorList: AdminModel[];
 
   constructor(
     private fb: FormBuilder,
     private service: ParametrosService,
     private router: Router,
-    private adminservice: AdminService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.get();
-    this.rellenaradmin();
-    this.rellenarpublicacion();
+    this.rellenarpubli();
     this.FormBuilding();
   }
 
   get() {
-    let id = this.route.snapshot.params["id_denuncia"];
-    this.service.getdenuncia(id).subscribe(
+    let id = this.route.snapshot.params["id_publicacion"];
+    this.service.getpublicacion(id).subscribe(
       data => {
-        this.fgv.id_denuncia.setValue(data.id_denuncia);
-        this.fgv.archivo_prueba.setValue(data.archivo_prueba);
-        this.fgv.descripcion.setValue(data.descripcion);
         this.fgv.fecha.setValue(data.fecha);
-        this.fgv.administradorId.setValue(data.administradorId);
-        this.fgv.publicacionId.setValue(data.publicacionId);
-        this.fgv.titulo.setValue(data.titulo);
-        this.fgv.resuelto.setValue(data.resuelto);
+        this.fgv.imagen.setValue(data.imagen);
+        this.fgv.nombre.setValue(data.nombre);
+        this.fgv.texto.setValue(data.texto);
+        this.fgv.usuarioId.setValue(data.usuarioId);
       },
       err => {
 
@@ -50,39 +50,25 @@ export class EditarPublicacionesComponent implements OnInit {
     );
   }
 
-  rellenaradmin() {
-    this.adminservice.getadministradores().subscribe(
-      data => {
-        this.administradorList = data;
-      },
-      error => {
-        ShowNotificationMessage("Error cargando lista de usuarios.");
-      }
-    );
-  }
-
-  rellenarpublicacion() {
+  rellenarpubli() {
     this.service.getpublicaciones().subscribe(
       data => {
         this.publicacionList = data;
       },
       error => {
-        ShowNotificationMessage("Error cargando lista de usuarios.");
+        ShowNotificationMessage("Error cargando lista.");
       }
     );
   }
 
 
+
   FormBuilding() {
     this.fgValidator = this.fb.group({
-      archivo_prueba: ['', [Validators.required]],
-      id_denuncia: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      fecha: ['', [Validators.required, Validators.email]],
-      administradorId: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
-      publicacionId: ['', [Validators.required]],
-      titulo:['',[Validators.required]],
-      resuelto:['',[Validators.required]]
+      imagen: ['', [Validators.required]],
+      texto: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
     });
   }
 
@@ -92,7 +78,7 @@ export class EditarPublicacionesComponent implements OnInit {
     } else {
       let model = this.getRecordData();
       console.log(model)
-      this.service.editdenuncia(model).subscribe(
+      this.service.editpublicacion(model).subscribe(
         data => {
           ShowNotificationMessage('Actualizacion Completa');
           this.router.navigate(['/denuncia/lista-denuncia']);
@@ -102,5 +88,21 @@ export class EditarPublicacionesComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  getRecordData(): PublicacionModel {
+    let model = new PublicacionModel();
+    model.fecha = this.fgv.fecha.value;
+    model.imagen = this.fgv.imagen.value;
+    model.nombre = this.fgv.nombre.value;
+    model.texto = this.fgv.texto.value;
+    model.usuarioId = this.fgv.usuarioId.value;
+    return model;
+  }
+
+  get fgv() {
+    return this.fgValidator.controls;
+  }
 
 }

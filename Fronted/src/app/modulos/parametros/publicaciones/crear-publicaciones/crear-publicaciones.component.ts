@@ -4,8 +4,9 @@ import { FormsConfig } from 'src/app/config/forms-config';
 import { AdminModel } from 'src/app/modelos/admin.model';
 import { ParametrosService } from 'src/app/servicios/servicios_de_parametros/parametros.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AdminService } from 'src/app/servicios/servicios_de_admin/admin.service';
 import { PublicacionModel } from 'src/app/modelos/publicacion.model';
+import { UsuarioService } from '../../../../servicios/servicios_de_usuario/usuario.service';
+
 
 declare const ShowNotificationMessage: any;
 
@@ -29,8 +30,7 @@ export class CrearPublicacionesComponent implements OnInit {
     private usuarioservice: UsuarioService,
     private service: ParametrosService,
     private router: Router,
-    private route: ActivatedRoute,
-    private adminService: AdminService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +41,9 @@ export class CrearPublicacionesComponent implements OnInit {
 
   get() {
     let id = this.route.snapshot.params["id_usuario"];
-    this.service.getusuario(id).subscribe(
+    this.usuarioservice.getRecordById(id).subscribe(
       data => {
-        this.fgv.nombre_usuario.setValue(data.nombre_usuario);
+        this.fgv.usuarioId.setValue(data.id_usuario);
         
       },
       err => {
@@ -60,7 +60,10 @@ export class CrearPublicacionesComponent implements OnInit {
       texto: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
       imagen: ['', [Validators.required]],
-      usuarioId: ['', [Validators.required]],
+      usuarioId: ['', ],
+      me_gusta: [0, ],
+      no_gusta: [0, ],
+  
   
     });
   }
@@ -73,7 +76,7 @@ export class CrearPublicacionesComponent implements OnInit {
       this.service.guardarpublicacion(model).subscribe(
         data => {
           ShowNotificationMessage('The record has been saved successfuly');
-          this.router.navigate(['/courses/course-list']);
+          this.router.navigate(['/parametros/lista-publicidad']);
         },
         error => {
           ShowNotificationMessage('Error registering record.');
@@ -89,7 +92,8 @@ export class CrearPublicacionesComponent implements OnInit {
     model.nombre = this.fgv.nombre.value;
     model.texto = this.fgv.texto.value;
     model.usuarioId = this.fgv.usuarioId.value;
-  
+    model.me_gusta = this.fgv.me_gusta.value;
+    model.no_gusta = this.fgv.no_gusta.value;
     return model;
   }
 
@@ -97,11 +101,10 @@ export class CrearPublicacionesComponent implements OnInit {
     return this.fgValidator.controls;
   }
 
-  /** Upload file region */
-
+  
   FormUploadBuilding() {
     this.uploadForm = this.fb.group({
-      file: ['', [Validators.required]]
+      imagen: ['', [Validators.required]]
     });
   }
 
@@ -111,12 +114,12 @@ export class CrearPublicacionesComponent implements OnInit {
 
   UploadImage() {
     const formData = new FormData();
-    formData.append('file', this.fgUpload.file.value);
-    this.service.uploadImage(formData).subscribe(
+    formData.append('file', this.fgUpload.imagen.value);
+    this.service.uploadImagepublicacion(formData).subscribe(
       data => {
         console.log("Filename. " + data);
 
-        this.fgv.archivo_prueba.setValue(data.filename);
+        this.fgv.imagen.setValue(data.filename);
         ShowNotificationMessage("The image has been uploaded successfuly.");
       },
       err => {

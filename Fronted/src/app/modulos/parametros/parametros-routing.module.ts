@@ -6,6 +6,9 @@ import { CrearDenunciasComponent } from './denuncias/crear-denuncias/crear-denun
 import { EditarDenunciasComponent } from './denuncias/editar-denuncias/editar-denuncias.component';
 import { CrearPublicidadComponent } from './publicidad/crear-publicidad/crear-publicidad.component';
 import { EditarPublicidadComponent } from './publicidad/editar-publicidad/editar-publicidad.component';
+import { ListaPublicacionesComponent } from './publicaciones/lista-publicaciones/lista-publicaciones.component';
+import { CrearPublicacionesComponent } from './publicaciones/crear-publicaciones/crear-publicaciones.component';
+import { EditarPublicacionesComponent } from './publicaciones/editar-publicaciones/editar-publicaciones.component';
 
 const routes: Routes = [
 
@@ -18,7 +21,7 @@ const routes: Routes = [
     component: CrearDenunciasComponent
   },
   {
-    path: 'editar-denuncia',
+    path: 'editar-denuncia/:id_denuncia',
     component: EditarDenunciasComponent
   },
   
@@ -32,8 +35,21 @@ const routes: Routes = [
     component: CrearPublicidadComponent
   },
   {
-    path: 'editar-publicidad',
+    path: 'editar-publicidad/:id_publicidad',
     component: EditarPublicidadComponent
+  },
+
+  {
+    path: 'lista-publicacion',
+    component: ListaPublicacionesComponent
+  },
+  {
+    path: 'crear-publicacion/:id_usuario',
+    component: CrearPublicacionesComponent
+  },
+  {
+    path: 'editar-publicacion/:id_publicacion',
+    component: EditarPublicacionesComponent
   }
 
 

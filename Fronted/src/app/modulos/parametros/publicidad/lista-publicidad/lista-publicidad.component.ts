@@ -16,11 +16,50 @@ declare const closeModal: any;
 export class ListaPublicidadComponent implements OnInit {
 
 
+  page: number = 1;
+  publicidadList: PublicidadModel[];
+  removeRecordId: String = '';
+  itemsPageAmount: number = FormsConfig.ITEMS_PER_PAGE;
+
   constructor(private service: ParametrosService,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-       
+        /** spinner starts on init */
+        this.spinner.show();
+        this.getlist();
+  }
+  getlist() {
+    this.service.getpublicidades().subscribe(
+      records => {
+        this.publicidadList = records;
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+        }, 1000);
+      },
+      error => {
+        ShowNotificationMessage("Problema en el servidor.");
+      }
+    );
+  }
+
+  RemoveRecordConfirmation(id) {
+    this.removeRecordId = id;
+    ShowRemoveConfirmationModal();
+  }
+
+  eliminar() {
+    this.service.eliminarpublicidad(this.removeRecordId).subscribe(
+      data => {
+        closeModal("removeConfirmationModal");
+        ShowNotificationMessage('Eliminacion Completa.');
+        this.getlist();
+      },
+      error => {
+        ShowNotificationMessage('Error en la eliminacion.');
+      }
+    );
   }
   
 }

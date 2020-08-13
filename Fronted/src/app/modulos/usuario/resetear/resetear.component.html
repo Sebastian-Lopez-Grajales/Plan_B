@@ -6,20 +6,36 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4">
-		    
+		    <form [formGroup]="fgValidator">
 		    <label>Current Password</label>
 		    <div class="form-group pass_show"> 
                 <input type="password" value="faisalkhan@123" class="form-control" placeholder="Current Password"> 
+                <div class="warning-validator" *ngIf="fgv.currentPassword.errors && (fgv.currentPassword.dirty || fgv.currentPassword.touched)">
+                    <strong *ngIf="fgv.currentPassword.errors.required">
+                        This field is required.
+                    </strong>
+                </div>
             </div> 
 		       <label>New Password</label>
             <div class="form-group pass_show"> 
                 <input type="password" value="faisal.khan@123" class="form-control" placeholder="New Password"> 
+                <div class="warning-validator" *ngIf="fgv.newPassword.errors && (fgv.newPassword.dirty || fgv.newPassword.touched)">
+                    <strong *ngIf="fgv.newPassword.errors.required">
+                        This field is required.
+                    </strong>
+                </div>
             </div> 
 		       <label>Confirm Password</label>
             <div class="form-group pass_show"> 
                 <input type="password" value="faisal.khan@123" class="form-control" placeholder="Confirm Password"> 
+                <div class="warning-validator" *ngIf="fgv.newPassword2.errors && (fgv.newPassword2.dirty || fgv.newPassword2.touched)">
+                    <strong *ngIf="fgv.newPassword2.errors.required">
+                        This field is required.
+                    </strong>
+                </div>
             </div> 
-            
+            <input type="button" (click)="ChangePassword()" class="fadeIn fourth" value="Reset Password">
+        </form>
 		</div>  
 	</div>
 </div>
