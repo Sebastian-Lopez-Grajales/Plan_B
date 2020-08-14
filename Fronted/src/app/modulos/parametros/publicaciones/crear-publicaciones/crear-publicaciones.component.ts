@@ -131,7 +131,7 @@ export class CrearPublicacionesComponent implements OnInit {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const f = event.target.files[0];
-      this.fgUpload.file.setValue(f);
+      this.fgUpload.imagen.setValue(f);
     }
   }
 }

@@ -61,5 +61,13 @@ export class ListaPublicacionesComponent implements OnInit {
     );
   }
 
+  /**descargarImagepublicacion(formData): Observable<CargaModel> {
+    return this.http.post<CargaModel>(`${ServiceConfig.BASE_URL}PublicacionImagen`, formData, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    });
+  }**/
+
 
 }

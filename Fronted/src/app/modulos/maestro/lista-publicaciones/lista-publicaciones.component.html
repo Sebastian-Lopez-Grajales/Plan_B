@@ -1,1 +1,11 @@
-<a>5?</a>
+<div class="card-columns">
+    <div class="card" *ngFor="let c of publicacionesList">
+        <img class="card-img-top img-fluid" src="//placehold.it/500x270" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{c.nombre}}</h5>
+            <p class="card-text">{{c.texto}}</p>
+            <p class="card-text">{{c.fecha}}</p>
+            <button type="button" class="btn btn-success"  >{{c.me_gusta}}</button>
+        </div>
+    </div>
+</div>
